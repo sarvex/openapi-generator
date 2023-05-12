@@ -50,11 +50,7 @@ class Bird(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        return _dict
+        return self.dict(by_alias=True, exclude={}, exclude_none=True)
 
     @classmethod
     def from_dict(cls, obj: dict) -> Bird:
@@ -65,9 +61,5 @@ class Bird(BaseModel):
         if type(obj) is not dict:
             return Bird.parse_obj(obj)
 
-        _obj = Bird.parse_obj({
-            "size": obj.get("size"),
-            "color": obj.get("color")
-        })
-        return _obj
+        return Bird.parse_obj({"size": obj.get("size"), "color": obj.get("color")})
 

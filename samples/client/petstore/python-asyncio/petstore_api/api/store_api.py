@@ -66,7 +66,7 @@ class StoreApi(object):
         kwargs['_return_http_data_only'] = True
         return self.delete_order_with_http_info(order_id, **kwargs)  # noqa: E501
 
-    def delete_order_with_http_info(self, order_id, **kwargs):  # noqa: E501
+    def delete_order_with_http_info(self, order_id, **kwargs):    # noqa: E501
         """Delete purchase order by ID  # noqa: E501
 
         For valid response try integer IDs with value < 1000. Anything above 1000 or nonintegers will generate API errors  # noqa: E501
@@ -105,33 +105,25 @@ class StoreApi(object):
         local_var_params = locals()
 
         all_params = [
-            'order_id'
+            'order_id',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_order" % key
+                    f"Got an unexpected keyword argument '{key}' to method delete_order"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'order_id' is set
         if self.api_client.client_side_validation and local_var_params.get('order_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `order_id` when calling `delete_order`")  # noqa: E501
-
-        collection_formats = {}
 
         path_params = {}
         if 'order_id' in local_var_params:
@@ -150,6 +142,7 @@ class StoreApi(object):
 
         response_types_map = {}
 
+        collection_formats = {}
         return self.api_client.call_api(
             '/store/order/{order_id}', 'DELETE',
             path_params,
@@ -195,7 +188,7 @@ class StoreApi(object):
         kwargs['_return_http_data_only'] = True
         return self.get_inventory_with_http_info(**kwargs)  # noqa: E501
 
-    def get_inventory_with_http_info(self, **kwargs):  # noqa: E501
+    def get_inventory_with_http_info(self, **kwargs):    # noqa: E501
         """Returns pet inventories by status  # noqa: E501
 
         Returns a map of status codes to quantities  # noqa: E501
@@ -232,29 +225,21 @@ class StoreApi(object):
         local_var_params = locals()
 
         all_params = [
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_inventory" % key
+                    f"Got an unexpected keyword argument '{key}' to method get_inventory"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-
-        collection_formats = {}
 
         path_params = {}
 
@@ -277,6 +262,7 @@ class StoreApi(object):
             200: "dict[str, int]",
         }
 
+        collection_formats = {}
         return self.api_client.call_api(
             '/store/inventory', 'GET',
             path_params,
@@ -324,7 +310,7 @@ class StoreApi(object):
         kwargs['_return_http_data_only'] = True
         return self.get_order_by_id_with_http_info(order_id, **kwargs)  # noqa: E501
 
-    def get_order_by_id_with_http_info(self, order_id, **kwargs):  # noqa: E501
+    def get_order_by_id_with_http_info(self, order_id, **kwargs):    # noqa: E501
         """Find purchase order by ID  # noqa: E501
 
         For valid response try integer IDs with value <= 5 or > 10. Other values will generate exceptions  # noqa: E501
@@ -363,25 +349,19 @@ class StoreApi(object):
         local_var_params = locals()
 
         all_params = [
-            'order_id'
+            'order_id',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_order_by_id" % key
+                    f"Got an unexpected keyword argument '{key}' to method get_order_by_id"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -393,8 +373,6 @@ class StoreApi(object):
             raise ApiValueError("Invalid value for parameter `order_id` when calling `get_order_by_id`, must be a value less than or equal to `5`")  # noqa: E501
         if self.api_client.client_side_validation and 'order_id' in local_var_params and local_var_params['order_id'] < 1:  # noqa: E501
             raise ApiValueError("Invalid value for parameter `order_id` when calling `get_order_by_id`, must be a value greater than or equal to `1`")  # noqa: E501
-        collection_formats = {}
-
         path_params = {}
         if 'order_id' in local_var_params:
             path_params['order_id'] = local_var_params['order_id']  # noqa: E501
@@ -420,6 +398,7 @@ class StoreApi(object):
             404: None,
         }
 
+        collection_formats = {}
         return self.api_client.call_api(
             '/store/order/{order_id}', 'GET',
             path_params,
@@ -466,7 +445,7 @@ class StoreApi(object):
         kwargs['_return_http_data_only'] = True
         return self.place_order_with_http_info(body, **kwargs)  # noqa: E501
 
-    def place_order_with_http_info(self, body, **kwargs):  # noqa: E501
+    def place_order_with_http_info(self, body, **kwargs):    # noqa: E501
         """Place an order for a pet  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -504,25 +483,19 @@ class StoreApi(object):
         local_var_params = locals()
 
         all_params = [
-            'body'
+            'body',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method place_order" % key
+                    f"Got an unexpected keyword argument '{key}' to method place_order"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -541,9 +514,7 @@ class StoreApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if 'body' in local_var_params:
-            body_params = local_var_params['body']
+        body_params = local_var_params.get('body', None)
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/xml', 'application/json'])  # noqa: E501

@@ -78,7 +78,7 @@ class HeaderApi(object):
         return self.test_header_integer_boolean_string_with_http_info(integer_header, boolean_header, string_header, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def test_header_integer_boolean_string_with_http_info(self, integer_header : Optional[StrictInt] = None, boolean_header : Optional[StrictBool] = None, string_header : Optional[StrictStr] = None, **kwargs):  # noqa: E501
+    def test_header_integer_boolean_string_with_http_info(self, integer_header : Optional[StrictInt] = None, boolean_header : Optional[StrictBool] = None, string_header : Optional[StrictStr] = None, **kwargs):    # noqa: E501
         """Test header parameter(s)  # noqa: E501
 
         Test header parameter(s)  # noqa: E501
@@ -123,31 +123,23 @@ class HeaderApi(object):
         _all_params = [
             'integer_header',
             'boolean_header',
-            'string_header'
+            'string_header',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         # validate the arguments
         for _key, _val in _params['kwargs'].items():
             if _key not in _all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method test_header_integer_boolean_string" % _key
+                    f"Got an unexpected keyword argument '{_key}' to method test_header_integer_boolean_string"
                 )
             _params[_key] = _val
         del _params['kwargs']
-
-        _collection_formats = {}
 
         # process the path parameters
         _path_params = {}
@@ -181,6 +173,7 @@ class HeaderApi(object):
             '200': "str",
         }
 
+        _collection_formats = {}
         return self.api_client.call_api(
             '/header/integer/boolean/string', 'GET',
             _path_params,

@@ -83,10 +83,7 @@ class Dog(object):
         def convert(x):
             if hasattr(x, "to_dict"):
                 args = getfullargspec(x.to_dict).args
-                if len(args) == 1:
-                    return x.to_dict()
-                else:
-                    return x.to_dict(serialize)
+                return x.to_dict() if len(args) == 1 else x.to_dict(serialize)
             else:
                 return x
 
@@ -118,14 +115,8 @@ class Dog(object):
 
     def __eq__(self, other):
         """Returns true if both objects are equal"""
-        if not isinstance(other, Dog):
-            return False
-
-        return self.to_dict() == other.to_dict()
+        return self.to_dict() == other.to_dict() if isinstance(other, Dog) else False
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        if not isinstance(other, Dog):
-            return True
-
-        return self.to_dict() != other.to_dict()
+        return self.to_dict() != other.to_dict() if isinstance(other, Dog) else True

@@ -210,17 +210,16 @@ class ApiClient(object):
 
         if not _preload_content:
             return (return_data)
-            return return_data
-
         # deserialize response data
         if response_type:
             if response_type != (file_type,):
                 encoding = "utf-8"
                 content_type = response_data.getheader('content-type')
                 if content_type is not None:
-                    match = re.search(r"charset=([a-zA-Z\-\d]+)[\s\;]?", content_type)
-                    if match:
-                        encoding = match.group(1)
+                    if match := re.search(
+                        r"charset=([a-zA-Z\-\d]+)[\s\;]?", content_type
+                    ):
+                        encoding = match[1]
                 response_data.data = response_data.data.decode(encoding)
 
             return_data = self.deserialize(
@@ -293,8 +292,8 @@ class ApiClient(object):
         if isinstance(obj, dict):
             return {key: cls.sanitize_for_serialization(val) for key, val in obj.items()}
         raise ApiValueError(
-            'Unable to prepare type {} for serialization'.format(
-                obj.__class__.__name__))
+            f'Unable to prepare type {obj.__class__.__name__} for serialization'
+        )
 
     def deserialize(self, response, response_type, _check_type):
         """Deserializes response into an object.
@@ -329,17 +328,14 @@ class ApiClient(object):
         except ValueError:
             received_data = response.data
 
-        # store our data under the key of 'received_data' so users have some
-        # context if they are deserializing a string and the data type is wrong
-        deserialized_data = validate_and_convert_types(
+        return validate_and_convert_types(
             received_data,
             response_type,
             ['received_data'],
             True,
             _check_type,
-            configuration=self.configuration
+            configuration=self.configuration,
         )
-        return deserialized_data
 
     def call_api(
         self,
@@ -568,8 +564,7 @@ class ApiClient(object):
                 filedata = self.get_file_data_and_close_file(file_instance)
                 mimetype = (mimetypes.guess_type(filename)[0] or
                             'application/octet-stream')
-                params.append(
-                    tuple([param_name, tuple([filename, filedata, mimetype])]))
+                params.append((param_name, (filename, filedata, mimetype)))
 
         return params
 
@@ -636,8 +631,7 @@ class ApiClient(object):
             return
 
         for auth in auth_settings:
-            auth_setting = self.configuration.auth_settings().get(auth)
-            if auth_setting:
+            if auth_setting := self.configuration.auth_settings().get(auth):
                 self._apply_auth_params(
                     headers, queries, resource_path, method, body, auth_setting)
 
@@ -793,8 +787,7 @@ class Endpoint(object):
                     params[param_location].append(param_value_full)
                 if param_location not in {'form', 'query'}:
                     params[param_location][base_name] = param_value
-                collection_format = self.collection_format_map.get(param_name)
-                if collection_format:
+                if collection_format := self.collection_format_map.get(param_name):
                     params['collection_format'][base_name] = collection_format
 
         return params
@@ -827,17 +820,14 @@ class Endpoint(object):
         except IndexError:
             if self.settings['servers']:
                 raise ApiValueError(
-                    "Invalid host index. Must be 0 <= index < %s" %
-                    len(self.settings['servers'])
+                    f"Invalid host index. Must be 0 <= index < {len(self.settings['servers'])}"
                 )
             _host = None
 
         for key, value in kwargs.items():
             if key not in self.params_map['all']:
                 raise ApiTypeError(
-                    "Got an unexpected parameter '%s'"
-                    " to method `%s`" %
-                    (key, self.settings['operation_id'])
+                    f"Got an unexpected parameter '{key}' to method `{self.settings['operation_id']}`"
                 )
             # only throw this nullable ApiValueError if _check_input_type
             # is False, if _check_input_type==True we catch this case
@@ -845,38 +835,33 @@ class Endpoint(object):
             if (key not in self.params_map['nullable'] and value is None
                     and kwargs['_check_input_type'] is False):
                 raise ApiValueError(
-                    "Value may not be None for non-nullable parameter `%s`"
-                    " when calling `%s`" %
-                    (key, self.settings['operation_id'])
+                    f"Value may not be None for non-nullable parameter `{key}` when calling `{self.settings['operation_id']}`"
                 )
 
         for key in self.params_map['required']:
             if key not in kwargs.keys():
                 raise ApiValueError(
-                    "Missing the required parameter `%s` when calling "
-                    "`%s`" % (key, self.settings['operation_id'])
+                    f"Missing the required parameter `{key}` when calling `{self.settings['operation_id']}`"
                 )
 
         self.__validate_inputs(kwargs)
 
         params = self.__gather_params(kwargs)
 
-        accept_headers_list = self.headers_map['accept']
-        if accept_headers_list:
+        if accept_headers_list := self.headers_map['accept']:
             params['header']['Accept'] = self.api_client.select_header_accept(
                 accept_headers_list)
 
         if kwargs.get('_content_type'):
             params['header']['Content-Type'] = kwargs['_content_type']
-        else:
-            content_type_headers_list = self.headers_map['content_type']
-            if content_type_headers_list:
-                if params['body'] != "":
-                    content_types_list = self.api_client.select_header_content_type(
-                        content_type_headers_list, self.settings['http_method'],
-                        params['body'])
-                    if content_types_list:
-                        params['header']['Content-Type'] = content_types_list
+        elif content_type_headers_list := self.headers_map['content_type']:
+            if params['body'] != "":
+                if content_types_list := self.api_client.select_header_content_type(
+                    content_type_headers_list,
+                    self.settings['http_method'],
+                    params['body'],
+                ):
+                    params['header']['Content-Type'] = content_types_list
 
         return self.api_client.call_api(
             self.settings['endpoint_path'], self.settings['http_method'],

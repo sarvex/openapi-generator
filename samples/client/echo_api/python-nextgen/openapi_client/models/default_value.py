@@ -97,15 +97,20 @@ class DefaultValue(BaseModel):
         if type(obj) is not dict:
             return DefaultValue.parse_obj(obj)
 
-        _obj = DefaultValue.parse_obj({
-            "array_string_enum_ref_default": obj.get("array_string_enum_ref_default"),
-            "array_string_enum_default": obj.get("array_string_enum_default"),
-            "array_string_default": obj.get("array_string_default"),
-            "array_integer_default": obj.get("array_integer_default"),
-            "array_string": obj.get("array_string"),
-            "array_string_nullable": obj.get("array_string_nullable"),
-            "array_string_extension_nullable": obj.get("array_string_extension_nullable"),
-            "string_nullable": obj.get("string_nullable")
-        })
-        return _obj
+        return DefaultValue.parse_obj(
+            {
+                "array_string_enum_ref_default": obj.get(
+                    "array_string_enum_ref_default"
+                ),
+                "array_string_enum_default": obj.get("array_string_enum_default"),
+                "array_string_default": obj.get("array_string_default"),
+                "array_integer_default": obj.get("array_integer_default"),
+                "array_string": obj.get("array_string"),
+                "array_string_nullable": obj.get("array_string_nullable"),
+                "array_string_extension_nullable": obj.get(
+                    "array_string_extension_nullable"
+                ),
+                "string_nullable": obj.get("string_nullable"),
+            }
+        )
 

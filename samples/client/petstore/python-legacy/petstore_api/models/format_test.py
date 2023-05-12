@@ -211,8 +211,7 @@ class FormatTest(object):
         """
         if self.local_vars_configuration.client_side_validation and number is None:  # noqa: E501
             raise ValueError("Invalid value for `number`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                number is not None and number > 543.2):  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and number > 543.2:  # noqa: E501
             raise ValueError("Invalid value for `number`, must be a value less than or equal to `543.2`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 number is not None and number < 32.1):  # noqa: E501
@@ -430,8 +429,10 @@ class FormatTest(object):
         """
         if self.local_vars_configuration.client_side_validation and password is None:  # noqa: E501
             raise ValueError("Invalid value for `password`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                password is not None and len(password) > 64):
+        if (
+            self.local_vars_configuration.client_side_validation
+            and len(password) > 64
+        ):
             raise ValueError("Invalid value for `password`, length must be less than or equal to `64`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 password is not None and len(password) < 10):
@@ -467,10 +468,7 @@ class FormatTest(object):
         def convert(x):
             if hasattr(x, "to_dict"):
                 args = getfullargspec(x.to_dict).args
-                if len(args) == 1:
-                    return x.to_dict()
-                else:
-                    return x.to_dict(serialize)
+                return x.to_dict() if len(args) == 1 else x.to_dict(serialize)
             else:
                 return x
 

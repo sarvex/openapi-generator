@@ -56,11 +56,7 @@ class RESTClientObject(object):
         # Custom SSL certificates and client certificates: http://urllib3.readthedocs.io/en/latest/advanced-usage.html  # noqa: E501
 
         # cert_reqs
-        if configuration.verify_ssl:
-            cert_reqs = ssl.CERT_REQUIRED
-        else:
-            cert_reqs = ssl.CERT_NONE
-
+        cert_reqs = ssl.CERT_REQUIRED if configuration.verify_ssl else ssl.CERT_NONE
         addition_pool_args = {}
         if configuration.assert_hostname is not None:
             addition_pool_args['assert_hostname'] = configuration.assert_hostname  # noqa: E501
@@ -150,11 +146,9 @@ class RESTClientObject(object):
             # For `POST`, `PUT`, `PATCH`, `OPTIONS`, `DELETE`
             if method in ['POST', 'PUT', 'PATCH', 'OPTIONS', 'DELETE']:
                 if query_params:
-                    url += '?' + urlencode(query_params)
+                    url += f'?{urlencode(query_params)}'
                 if re.search('json', headers['Content-Type'], re.IGNORECASE):
-                    request_body = None
-                    if body is not None:
-                        request_body = json.dumps(body)
+                    request_body = json.dumps(body) if body is not None else None
                     r = self.pool_manager.request(
                         method, url,
                         body=request_body,
@@ -181,10 +175,7 @@ class RESTClientObject(object):
                         preload_content=_preload_content,
                         timeout=timeout,
                         headers=headers)
-                # Pass a `string` parameter directly in the body to support
-                # other content types than Json when `body` argument is
-                # provided in serialized form
-                elif isinstance(body, str) or isinstance(body, bytes):
+                elif isinstance(body, (str, bytes)):
                     request_body = body
                     r = self.pool_manager.request(
                         method, url,
@@ -198,7 +189,6 @@ class RESTClientObject(object):
                              arguments. Please check that your arguments match
                              declared content type."""
                     raise ApiException(status=0, reason=msg)
-            # For `GET`, `HEAD`
             else:
                 r = self.pool_manager.request(method, url,
                                               fields=query_params,

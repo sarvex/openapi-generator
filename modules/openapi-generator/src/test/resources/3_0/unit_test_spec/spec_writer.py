@@ -269,8 +269,7 @@ file_name_to_tag_name = {
 def get_json_schema_test_schemas(file_path: typing.Tuple[str]) -> typing.List[JsonSchemaTestSchema]:
     json_schema_test_schemas = []
     filename = file_path[-1]
-    exclude_file_reason = FILEPATH_TO_EXCLUDE_REASON.get(file_path)
-    if exclude_file_reason:
+    if exclude_file_reason := FILEPATH_TO_EXCLUDE_REASON.get(file_path):
         print(f'Excluding {file_path} because {exclude_file_reason}')
         return
     excluded_case_to_reason = FILEPATH_TO_EXCLUDED_CASE_AND_REASON.get(file_path, {})
@@ -281,8 +280,7 @@ def get_json_schema_test_schemas(file_path: typing.Tuple[str]) -> typing.List[Js
             test_schema_dict['tests'] = [JsonSchemaTestCase(**t) for t in test_schema_dict['tests']]
             json_schema_test_schema = JsonSchemaTestSchema(**test_schema_dict)
             test_case_desc = json_schema_test_schema.description
-            excluded_reason = excluded_case_to_reason.get(test_case_desc)
-            if excluded_reason:
+            if excluded_reason := excluded_case_to_reason.get(test_case_desc):
                 print(f'Excluding {test_case_desc} because {excluded_reason}')
                 continue
 

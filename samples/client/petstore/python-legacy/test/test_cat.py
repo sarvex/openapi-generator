@@ -34,13 +34,7 @@ class TestCat(unittest.TestCase):
             params are included, when True both required and
             optional params are included """
         # model = petstore_api.models.cat.Cat()  # noqa: E501
-        if include_optional :
-            return Cat(
-                declawed = True
-            )
-        else :
-            return Cat(
-        )
+        return Cat(declawed=True) if include_optional else Cat()
 
     def testCat(self):
         """Test Cat"""

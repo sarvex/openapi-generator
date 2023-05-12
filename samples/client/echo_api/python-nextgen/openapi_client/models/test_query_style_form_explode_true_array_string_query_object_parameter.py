@@ -49,11 +49,7 @@ class TestQueryStyleFormExplodeTrueArrayStringQueryObjectParameter(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        return _dict
+        return self.dict(by_alias=True, exclude={}, exclude_none=True)
 
     @classmethod
     def from_dict(cls, obj: dict) -> TestQueryStyleFormExplodeTrueArrayStringQueryObjectParameter:
@@ -64,8 +60,9 @@ class TestQueryStyleFormExplodeTrueArrayStringQueryObjectParameter(BaseModel):
         if type(obj) is not dict:
             return TestQueryStyleFormExplodeTrueArrayStringQueryObjectParameter.parse_obj(obj)
 
-        _obj = TestQueryStyleFormExplodeTrueArrayStringQueryObjectParameter.parse_obj({
-            "values": obj.get("values")
-        })
-        return _obj
+        return (
+            TestQueryStyleFormExplodeTrueArrayStringQueryObjectParameter.parse_obj(
+                {"values": obj.get("values")}
+            )
+        )
 

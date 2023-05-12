@@ -52,11 +52,7 @@ class TestQueryStyleDeepObjectExplodeTrueObjectAllOfQueryObjectParameter(BaseMod
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        return _dict
+        return self.dict(by_alias=True, exclude={}, exclude_none=True)
 
     @classmethod
     def from_dict(cls, obj: dict) -> TestQueryStyleDeepObjectExplodeTrueObjectAllOfQueryObjectParameter:
@@ -67,11 +63,12 @@ class TestQueryStyleDeepObjectExplodeTrueObjectAllOfQueryObjectParameter(BaseMod
         if type(obj) is not dict:
             return TestQueryStyleDeepObjectExplodeTrueObjectAllOfQueryObjectParameter.parse_obj(obj)
 
-        _obj = TestQueryStyleDeepObjectExplodeTrueObjectAllOfQueryObjectParameter.parse_obj({
-            "size": obj.get("size"),
-            "color": obj.get("color"),
-            "id": obj.get("id"),
-            "name": obj.get("name")
-        })
-        return _obj
+        return TestQueryStyleDeepObjectExplodeTrueObjectAllOfQueryObjectParameter.parse_obj(
+            {
+                "size": obj.get("size"),
+                "color": obj.get("color"),
+                "id": obj.get("id"),
+                "name": obj.get("name"),
+            }
+        )
 

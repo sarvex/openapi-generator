@@ -34,13 +34,7 @@ class TestFile(unittest.TestCase):
             params are included, when True both required and
             optional params are included """
         # model = petstore_api.models.file.File()  # noqa: E501
-        if include_optional :
-            return File(
-                source_uri = '0'
-            )
-        else :
-            return File(
-        )
+        return File(source_uri='0') if include_optional else File()
 
     def testFile(self):
         """Test File"""

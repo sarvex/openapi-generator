@@ -51,11 +51,7 @@ class DataQueryAllOf(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        return _dict
+        return self.dict(by_alias=True, exclude={}, exclude_none=True)
 
     @classmethod
     def from_dict(cls, obj: dict) -> DataQueryAllOf:
@@ -66,10 +62,11 @@ class DataQueryAllOf(BaseModel):
         if type(obj) is not dict:
             return DataQueryAllOf.parse_obj(obj)
 
-        _obj = DataQueryAllOf.parse_obj({
-            "suffix": obj.get("suffix"),
-            "text": obj.get("text"),
-            "var_date": obj.get("date")
-        })
-        return _obj
+        return DataQueryAllOf.parse_obj(
+            {
+                "suffix": obj.get("suffix"),
+                "text": obj.get("text"),
+                "var_date": obj.get("date"),
+            }
+        )
 

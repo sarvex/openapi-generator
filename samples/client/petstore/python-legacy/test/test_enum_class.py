@@ -33,12 +33,7 @@ class TestEnumClass(unittest.TestCase):
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = petstore_api.models.enum_class.EnumClass()  # noqa: E501
-        if include_optional :
-            return EnumClass(
-            )
-        else :
-            return EnumClass(
+        return EnumClass(
         )
 
     def testEnumClass(self):

@@ -66,7 +66,7 @@ class UserApi(object):
         kwargs['_return_http_data_only'] = True
         return self.create_user_with_http_info(body, **kwargs)  # noqa: E501
 
-    def create_user_with_http_info(self, body, **kwargs):  # noqa: E501
+    def create_user_with_http_info(self, body, **kwargs):    # noqa: E501
         """Create user  # noqa: E501
 
         This can only be done by the logged in user.  # noqa: E501
@@ -105,25 +105,19 @@ class UserApi(object):
         local_var_params = locals()
 
         all_params = [
-            'body'
+            'body',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method create_user" % key
+                    f"Got an unexpected keyword argument '{key}' to method create_user"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -142,9 +136,7 @@ class UserApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if 'body' in local_var_params:
-            body_params = local_var_params['body']
+        body_params = local_var_params.get('body', None)
         # Authentication setting
         auth_settings = []  # noqa: E501
 
@@ -196,7 +188,7 @@ class UserApi(object):
         kwargs['_return_http_data_only'] = True
         return self.create_users_with_array_input_with_http_info(body, **kwargs)  # noqa: E501
 
-    def create_users_with_array_input_with_http_info(self, body, **kwargs):  # noqa: E501
+    def create_users_with_array_input_with_http_info(self, body, **kwargs):    # noqa: E501
         """Creates list of users with given input array  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -234,25 +226,19 @@ class UserApi(object):
         local_var_params = locals()
 
         all_params = [
-            'body'
+            'body',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method create_users_with_array_input" % key
+                    f"Got an unexpected keyword argument '{key}' to method create_users_with_array_input"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -271,9 +257,7 @@ class UserApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if 'body' in local_var_params:
-            body_params = local_var_params['body']
+        body_params = local_var_params.get('body', None)
         # Authentication setting
         auth_settings = []  # noqa: E501
 
@@ -325,7 +309,7 @@ class UserApi(object):
         kwargs['_return_http_data_only'] = True
         return self.create_users_with_list_input_with_http_info(body, **kwargs)  # noqa: E501
 
-    def create_users_with_list_input_with_http_info(self, body, **kwargs):  # noqa: E501
+    def create_users_with_list_input_with_http_info(self, body, **kwargs):    # noqa: E501
         """Creates list of users with given input array  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -363,25 +347,19 @@ class UserApi(object):
         local_var_params = locals()
 
         all_params = [
-            'body'
+            'body',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method create_users_with_list_input" % key
+                    f"Got an unexpected keyword argument '{key}' to method create_users_with_list_input"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -400,9 +378,7 @@ class UserApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if 'body' in local_var_params:
-            body_params = local_var_params['body']
+        body_params = local_var_params.get('body', None)
         # Authentication setting
         auth_settings = []  # noqa: E501
 
@@ -455,7 +431,7 @@ class UserApi(object):
         kwargs['_return_http_data_only'] = True
         return self.delete_user_with_http_info(username, **kwargs)  # noqa: E501
 
-    def delete_user_with_http_info(self, username, **kwargs):  # noqa: E501
+    def delete_user_with_http_info(self, username, **kwargs):    # noqa: E501
         """Delete user  # noqa: E501
 
         This can only be done by the logged in user.  # noqa: E501
@@ -494,33 +470,25 @@ class UserApi(object):
         local_var_params = locals()
 
         all_params = [
-            'username'
+            'username',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_user" % key
+                    f"Got an unexpected keyword argument '{key}' to method delete_user"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'username' is set
         if self.api_client.client_side_validation and local_var_params.get('username') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `username` when calling `delete_user`")  # noqa: E501
-
-        collection_formats = {}
 
         path_params = {}
         if 'username' in local_var_params:
@@ -539,6 +507,7 @@ class UserApi(object):
 
         response_types_map = {}
 
+        collection_formats = {}
         return self.api_client.call_api(
             '/user/{username}', 'DELETE',
             path_params,
@@ -585,7 +554,7 @@ class UserApi(object):
         kwargs['_return_http_data_only'] = True
         return self.get_user_by_name_with_http_info(username, **kwargs)  # noqa: E501
 
-    def get_user_by_name_with_http_info(self, username, **kwargs):  # noqa: E501
+    def get_user_by_name_with_http_info(self, username, **kwargs):    # noqa: E501
         """Get user by user name  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -623,33 +592,25 @@ class UserApi(object):
         local_var_params = locals()
 
         all_params = [
-            'username'
+            'username',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_user_by_name" % key
+                    f"Got an unexpected keyword argument '{key}' to method get_user_by_name"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'username' is set
         if self.api_client.client_side_validation and local_var_params.get('username') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `username` when calling `get_user_by_name`")  # noqa: E501
-
-        collection_formats = {}
 
         path_params = {}
         if 'username' in local_var_params:
@@ -676,6 +637,7 @@ class UserApi(object):
             404: None,
         }
 
+        collection_formats = {}
         return self.api_client.call_api(
             '/user/{username}', 'GET',
             path_params,
@@ -724,7 +686,7 @@ class UserApi(object):
         kwargs['_return_http_data_only'] = True
         return self.login_user_with_http_info(username, password, **kwargs)  # noqa: E501
 
-    def login_user_with_http_info(self, username, password, **kwargs):  # noqa: E501
+    def login_user_with_http_info(self, username, password, **kwargs):    # noqa: E501
         """Logs user into the system  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -765,25 +727,19 @@ class UserApi(object):
 
         all_params = [
             'username',
-            'password'
+            'password',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method login_user" % key
+                    f"Got an unexpected keyword argument '{key}' to method login_user"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -793,8 +749,6 @@ class UserApi(object):
         # verify the required parameter 'password' is set
         if self.api_client.client_side_validation and local_var_params.get('password') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `password` when calling `login_user`")  # noqa: E501
-
-        collection_formats = {}
 
         path_params = {}
 
@@ -822,6 +776,7 @@ class UserApi(object):
             400: None,
         }
 
+        collection_formats = {}
         return self.api_client.call_api(
             '/user/login', 'GET',
             path_params,
@@ -866,7 +821,7 @@ class UserApi(object):
         kwargs['_return_http_data_only'] = True
         return self.logout_user_with_http_info(**kwargs)  # noqa: E501
 
-    def logout_user_with_http_info(self, **kwargs):  # noqa: E501
+    def logout_user_with_http_info(self, **kwargs):    # noqa: E501
         """Logs out current logged in user session  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -902,29 +857,21 @@ class UserApi(object):
         local_var_params = locals()
 
         all_params = [
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method logout_user" % key
+                    f"Got an unexpected keyword argument '{key}' to method logout_user"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-
-        collection_formats = {}
 
         path_params = {}
 
@@ -941,6 +888,7 @@ class UserApi(object):
 
         response_types_map = {}
 
+        collection_formats = {}
         return self.api_client.call_api(
             '/user/logout', 'GET',
             path_params,
@@ -990,7 +938,7 @@ class UserApi(object):
         kwargs['_return_http_data_only'] = True
         return self.update_user_with_http_info(username, body, **kwargs)  # noqa: E501
 
-    def update_user_with_http_info(self, username, body, **kwargs):  # noqa: E501
+    def update_user_with_http_info(self, username, body, **kwargs):    # noqa: E501
         """Updated user  # noqa: E501
 
         This can only be done by the logged in user.  # noqa: E501
@@ -1032,25 +980,19 @@ class UserApi(object):
 
         all_params = [
             'username',
-            'body'
+            'body',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method update_user" % key
+                    f"Got an unexpected keyword argument '{key}' to method update_user"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -1074,9 +1016,7 @@ class UserApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if 'body' in local_var_params:
-            body_params = local_var_params['body']
+        body_params = local_var_params.get('body', None)
         # Authentication setting
         auth_settings = []  # noqa: E501
 

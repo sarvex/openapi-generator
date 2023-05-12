@@ -66,7 +66,7 @@ class FakeClassnameTags123Api(object):
         kwargs['_return_http_data_only'] = True
         return self.test_classname_with_http_info(body, **kwargs)  # noqa: E501
 
-    def test_classname_with_http_info(self, body, **kwargs):  # noqa: E501
+    def test_classname_with_http_info(self, body, **kwargs):    # noqa: E501
         """To test class name in snake case  # noqa: E501
 
         To test class name in snake case  # noqa: E501
@@ -105,25 +105,19 @@ class FakeClassnameTags123Api(object):
         local_var_params = locals()
 
         all_params = [
-            'body'
+            'body',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method test_classname" % key
+                    f"Got an unexpected keyword argument '{key}' to method test_classname"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -143,9 +137,7 @@ class FakeClassnameTags123Api(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if 'body' in local_var_params:
-            body_params = local_var_params['body']
+        body_params = local_var_params.get('body', None)
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501

@@ -4,10 +4,7 @@ import httplib, urllib, sys
 
 # Collect all the files in an order that will work. That is Models first then APIs
 def concatFiles(files):
-    code = ""
-    for file in files:
-        code += open(file).read()
-    return code
+    return "".join(open(file).read() for file in files)
 
 def makeRequest(params):
     # Always use the following value for the Content-type header.
@@ -39,9 +36,8 @@ def compile(output, files):
         ('output_info', 'compiled_code'),
       ])
 
-    f = open(output, 'w')
-    f.write(makeRequest(params))
-    f.close()
+    with open(output, 'w') as f:
+        f.write(makeRequest(params))
 
 targets = {
     "PetAPI": ["API/Client/Tag.js", "API/Client/Category.js", "API/Client/Pet.js", "API/Client/PetApi.js"],
@@ -51,13 +47,12 @@ targets = {
 
 def main():
     for name, targetFiles in targets.iteritems():
-        errors = checkForCompilerErrors(targetFiles)
-        if errors:
-            print("Compiler errors when building %s" % name)
+        if errors := checkForCompilerErrors(targetFiles):
+            print(f"Compiler errors when building {name}")
             print(errors)
 
     for name, targetFiles in targets.iteritems():
-        compile("%s.compiled.js" % name, targets[name])
+        compile(f"{name}.compiled.js", targets[name])
 
 if __name__ == "__main__":
     sys.exit(main())

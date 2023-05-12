@@ -78,7 +78,7 @@ class FormApi(object):
         return self.test_form_integer_boolean_string_with_http_info(integer_form, boolean_form, string_form, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def test_form_integer_boolean_string_with_http_info(self, integer_form : Optional[StrictInt] = None, boolean_form : Optional[StrictBool] = None, string_form : Optional[StrictStr] = None, **kwargs):  # noqa: E501
+    def test_form_integer_boolean_string_with_http_info(self, integer_form : Optional[StrictInt] = None, boolean_form : Optional[StrictBool] = None, string_form : Optional[StrictStr] = None, **kwargs):    # noqa: E501
         """Test form parameter(s)  # noqa: E501
 
         Test form parameter(s)  # noqa: E501
@@ -123,26 +123,20 @@ class FormApi(object):
         _all_params = [
             'integer_form',
             'boolean_form',
-            'string_form'
+            'string_form',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         # validate the arguments
         for _key, _val in _params['kwargs'].items():
             if _key not in _all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method test_form_integer_boolean_string" % _key
+                    f"Got an unexpected keyword argument '{_key}' to method test_form_integer_boolean_string"
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -174,12 +168,13 @@ class FormApi(object):
         _header_params['Accept'] = self.api_client.select_header_accept(
             ['text/plain'])  # noqa: E501
 
-        # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
+        if _content_types_list := _params.get(
+            '_content_type',
             self.api_client.select_header_content_type(
-                ['application/x-www-form-urlencoded']))
-        if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+                ['application/x-www-form-urlencoded']
+            ),
+        ):
+            _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
         _auth_settings = []  # noqa: E501

@@ -298,12 +298,12 @@ class ApiClient(object):
 
         if type(klass) == str:
             if klass.startswith('list['):
-                sub_kls = re.match(r'list\[(.*)\]', klass).group(1)
+                sub_kls = re.match(r'list\[(.*)\]', klass)[1]
                 return [self.__deserialize(sub_data, sub_kls)
                         for sub_data in data]
 
             if klass.startswith('dict['):
-                sub_kls = re.match(r'dict\[([^,]*), (.*)\]', klass).group(2)
+                sub_kls = re.match(r'dict\[([^,]*), (.*)\]', klass)[2]
                 return {k: self.__deserialize(v, sub_kls)
                         for k, v in six.iteritems(data)}
 
@@ -501,8 +501,7 @@ class ApiClient(object):
                         filedata = f.read()
                         mimetype = (mimetypes.guess_type(filename)[0] or
                                     'application/octet-stream')
-                        params.append(
-                            tuple([k, tuple([filename, filedata, mimetype])]))
+                        params.append((k, (filename, filedata, mimetype)))
 
         return params
 
@@ -563,8 +562,7 @@ class ApiClient(object):
             return
 
         for auth in auth_settings:
-            auth_setting = self.configuration.auth_settings().get(auth)
-            if auth_setting:
+            if auth_setting := self.configuration.auth_settings().get(auth):
                 self._apply_auth_params(headers, queries, auth_setting)
 
     def _apply_auth_params(self, headers, queries, auth_setting):
@@ -598,10 +596,10 @@ class ApiClient(object):
         os.close(fd)
         os.remove(path)
 
-        content_disposition = response.getheader("Content-Disposition")
-        if content_disposition:
-            filename = re.search(r'filename=[\'"]?([^\'"\s]+)[\'"]?',
-                                 content_disposition).group(1)
+        if content_disposition := response.getheader("Content-Disposition"):
+            filename = re.search(
+                r'filename=[\'"]?([^\'"\s]+)[\'"]?', content_disposition
+            )[1]
             path = os.path.join(os.path.dirname(path), filename)
 
         with open(path, "wb") as f:
@@ -675,12 +673,13 @@ class ApiClient(object):
         :param klass: class literal.
         :return: model object.
         """
-        has_discriminator = False
-        if (hasattr(klass, 'get_real_child_model')
-                and klass.discriminator_value_class_map):
-            has_discriminator = True
-
-        if not klass.openapi_types and has_discriminator is False:
+        has_discriminator = bool(
+            (
+                hasattr(klass, 'get_real_child_model')
+                and klass.discriminator_value_class_map
+            )
+        )
+        if not klass.openapi_types and not has_discriminator:
             return data
 
         kwargs = {}
@@ -696,7 +695,6 @@ class ApiClient(object):
         instance = klass(**kwargs)
 
         if has_discriminator:
-            klass_name = instance.get_real_child_model(data)
-            if klass_name:
+            if klass_name := instance.get_real_child_model(data):
                 instance = self.__deserialize(data, klass_name)
         return instance

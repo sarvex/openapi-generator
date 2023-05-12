@@ -65,7 +65,7 @@ class PetApi(object):
         kwargs['_return_http_data_only'] = True
         return self.add_pet_with_http_info(body, **kwargs)  # noqa: E501
 
-    def add_pet_with_http_info(self, body, **kwargs):  # noqa: E501
+    def add_pet_with_http_info(self, body, **kwargs):    # noqa: E501
         """Add a new pet to the store  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -103,25 +103,19 @@ class PetApi(object):
         local_var_params = locals()
 
         all_params = [
-            'body'
+            'body',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method add_pet" % key
+                    f"Got an unexpected keyword argument '{key}' to method add_pet"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -140,16 +134,14 @@ class PetApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if 'body' in local_var_params:
-            body_params = local_var_params['body']
-        # HTTP header `Content-Type`
-        content_types_list = local_var_params.get('_content_type',
+        body_params = local_var_params.get('body', None)
+        if content_types_list := local_var_params.get(
+            '_content_type',
             self.api_client.select_header_content_type(
-                ['application/json', 'application/xml'],
-                'POST', body_params))  # noqa: E501
-        if content_types_list:
-                header_params['Content-Type'] = content_types_list
+                ['application/json', 'application/xml'], 'POST', body_params
+            ),
+        ):
+            header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['petstore_auth']  # noqa: E501
@@ -204,7 +196,7 @@ class PetApi(object):
         kwargs['_return_http_data_only'] = True
         return self.delete_pet_with_http_info(pet_id, **kwargs)  # noqa: E501
 
-    def delete_pet_with_http_info(self, pet_id, **kwargs):  # noqa: E501
+    def delete_pet_with_http_info(self, pet_id, **kwargs):    # noqa: E501
         """Deletes a pet  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -245,33 +237,25 @@ class PetApi(object):
 
         all_params = [
             'pet_id',
-            'api_key'
+            'api_key',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_pet" % key
+                    f"Got an unexpected keyword argument '{key}' to method delete_pet"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'pet_id' is set
         if self.api_client.client_side_validation and local_var_params.get('pet_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pet_id` when calling `delete_pet`")  # noqa: E501
-
-        collection_formats = {}
 
         path_params = {}
         if 'pet_id' in local_var_params:
@@ -292,6 +276,7 @@ class PetApi(object):
 
         response_types_map = {}
 
+        collection_formats = {}
         return self.api_client.call_api(
             '/pet/{petId}', 'DELETE',
             path_params,
@@ -339,7 +324,7 @@ class PetApi(object):
         kwargs['_return_http_data_only'] = True
         return self.find_pets_by_status_with_http_info(status, **kwargs)  # noqa: E501
 
-    def find_pets_by_status_with_http_info(self, status, **kwargs):  # noqa: E501
+    def find_pets_by_status_with_http_info(self, status, **kwargs):    # noqa: E501
         """Finds Pets by status  # noqa: E501
 
         Multiple status values can be provided with comma separated strings  # noqa: E501
@@ -378,25 +363,19 @@ class PetApi(object):
         local_var_params = locals()
 
         all_params = [
-            'status'
+            'status',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method find_pets_by_status" % key
+                    f"Got an unexpected keyword argument '{key}' to method find_pets_by_status"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -404,11 +383,10 @@ class PetApi(object):
         if self.api_client.client_side_validation and local_var_params.get('status') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `status` when calling `find_pets_by_status`")  # noqa: E501
 
-        collection_formats = {}
-
         path_params = {}
 
         query_params = []
+        collection_formats = {}
         if local_var_params.get('status') is not None:  # noqa: E501
             query_params.append(('status', local_var_params['status']))  # noqa: E501
             collection_formats['status'] = 'csv'  # noqa: E501
@@ -478,7 +456,7 @@ class PetApi(object):
         kwargs['_return_http_data_only'] = True
         return self.find_pets_by_tags_with_http_info(tags, **kwargs)  # noqa: E501
 
-    def find_pets_by_tags_with_http_info(self, tags, **kwargs):  # noqa: E501
+    def find_pets_by_tags_with_http_info(self, tags, **kwargs):    # noqa: E501
         """Finds Pets by tags  # noqa: E501
 
         Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.  # noqa: E501
@@ -517,25 +495,19 @@ class PetApi(object):
         local_var_params = locals()
 
         all_params = [
-            'tags'
+            'tags',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method find_pets_by_tags" % key
+                    f"Got an unexpected keyword argument '{key}' to method find_pets_by_tags"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -543,11 +515,10 @@ class PetApi(object):
         if self.api_client.client_side_validation and local_var_params.get('tags') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tags` when calling `find_pets_by_tags`")  # noqa: E501
 
-        collection_formats = {}
-
         path_params = {}
 
         query_params = []
+        collection_formats = {}
         if local_var_params.get('tags') is not None:  # noqa: E501
             query_params.append(('tags', local_var_params['tags']))  # noqa: E501
             collection_formats['tags'] = 'csv'  # noqa: E501
@@ -617,7 +588,7 @@ class PetApi(object):
         kwargs['_return_http_data_only'] = True
         return self.get_pet_by_id_with_http_info(pet_id, **kwargs)  # noqa: E501
 
-    def get_pet_by_id_with_http_info(self, pet_id, **kwargs):  # noqa: E501
+    def get_pet_by_id_with_http_info(self, pet_id, **kwargs):    # noqa: E501
         """Find pet by ID  # noqa: E501
 
         Returns a single pet  # noqa: E501
@@ -656,33 +627,25 @@ class PetApi(object):
         local_var_params = locals()
 
         all_params = [
-            'pet_id'
+            'pet_id',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_pet_by_id" % key
+                    f"Got an unexpected keyword argument '{key}' to method get_pet_by_id"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'pet_id' is set
         if self.api_client.client_side_validation and local_var_params.get('pet_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pet_id` when calling `get_pet_by_id`")  # noqa: E501
-
-        collection_formats = {}
 
         path_params = {}
         if 'pet_id' in local_var_params:
@@ -709,6 +672,7 @@ class PetApi(object):
             404: None,
         }
 
+        collection_formats = {}
         return self.api_client.call_api(
             '/pet/{petId}', 'GET',
             path_params,
@@ -755,7 +719,7 @@ class PetApi(object):
         kwargs['_return_http_data_only'] = True
         return self.update_pet_with_http_info(body, **kwargs)  # noqa: E501
 
-    def update_pet_with_http_info(self, body, **kwargs):  # noqa: E501
+    def update_pet_with_http_info(self, body, **kwargs):    # noqa: E501
         """Update an existing pet  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -793,25 +757,19 @@ class PetApi(object):
         local_var_params = locals()
 
         all_params = [
-            'body'
+            'body',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method update_pet" % key
+                    f"Got an unexpected keyword argument '{key}' to method update_pet"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -830,16 +788,14 @@ class PetApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if 'body' in local_var_params:
-            body_params = local_var_params['body']
-        # HTTP header `Content-Type`
-        content_types_list = local_var_params.get('_content_type',
+        body_params = local_var_params.get('body', None)
+        if content_types_list := local_var_params.get(
+            '_content_type',
             self.api_client.select_header_content_type(
-                ['application/json', 'application/xml'],
-                'PUT', body_params))  # noqa: E501
-        if content_types_list:
-                header_params['Content-Type'] = content_types_list
+                ['application/json', 'application/xml'], 'PUT', body_params
+            ),
+        ):
+            header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['petstore_auth']  # noqa: E501
@@ -896,7 +852,7 @@ class PetApi(object):
         kwargs['_return_http_data_only'] = True
         return self.update_pet_with_form_with_http_info(pet_id, **kwargs)  # noqa: E501
 
-    def update_pet_with_form_with_http_info(self, pet_id, **kwargs):  # noqa: E501
+    def update_pet_with_form_with_http_info(self, pet_id, **kwargs):    # noqa: E501
         """Updates a pet in the store with form data  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -940,25 +896,19 @@ class PetApi(object):
         all_params = [
             'pet_id',
             'name',
-            'status'
+            'status',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method update_pet_with_form" % key
+                    f"Got an unexpected keyword argument '{key}' to method update_pet_with_form"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -984,13 +934,13 @@ class PetApi(object):
             form_params.append(('status', local_var_params['status']))  # noqa: E501
 
         body_params = None
-        # HTTP header `Content-Type`
-        content_types_list = local_var_params.get('_content_type',
+        if content_types_list := local_var_params.get(
+            '_content_type',
             self.api_client.select_header_content_type(
-                ['application/x-www-form-urlencoded'],
-                'POST', body_params))  # noqa: E501
-        if content_types_list:
-                header_params['Content-Type'] = content_types_list
+                ['application/x-www-form-urlencoded'], 'POST', body_params
+            ),
+        ):
+            header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['petstore_auth']  # noqa: E501
@@ -1047,7 +997,7 @@ class PetApi(object):
         kwargs['_return_http_data_only'] = True
         return self.upload_file_with_http_info(pet_id, **kwargs)  # noqa: E501
 
-    def upload_file_with_http_info(self, pet_id, **kwargs):  # noqa: E501
+    def upload_file_with_http_info(self, pet_id, **kwargs):    # noqa: E501
         """uploads an image  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1091,25 +1041,19 @@ class PetApi(object):
         all_params = [
             'pet_id',
             'additional_metadata',
-            'file'
+            'file',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method upload_file" % key
+                    f"Got an unexpected keyword argument '{key}' to method upload_file"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -1139,13 +1083,13 @@ class PetApi(object):
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
 
-        # HTTP header `Content-Type`
-        content_types_list = local_var_params.get('_content_type',
+        if content_types_list := local_var_params.get(
+            '_content_type',
             self.api_client.select_header_content_type(
-                ['multipart/form-data'],
-                'POST', body_params))  # noqa: E501
-        if content_types_list:
-                header_params['Content-Type'] = content_types_list
+                ['multipart/form-data'], 'POST', body_params
+            ),
+        ):
+            header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['petstore_auth']  # noqa: E501
@@ -1204,7 +1148,7 @@ class PetApi(object):
         kwargs['_return_http_data_only'] = True
         return self.upload_file_with_required_file_with_http_info(pet_id, required_file, **kwargs)  # noqa: E501
 
-    def upload_file_with_required_file_with_http_info(self, pet_id, required_file, **kwargs):  # noqa: E501
+    def upload_file_with_required_file_with_http_info(self, pet_id, required_file, **kwargs):    # noqa: E501
         """uploads an image (required)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1248,25 +1192,19 @@ class PetApi(object):
         all_params = [
             'pet_id',
             'required_file',
-            'additional_metadata'
+            'additional_metadata',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method upload_file_with_required_file" % key
+                    f"Got an unexpected keyword argument '{key}' to method upload_file_with_required_file"
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -1299,13 +1237,13 @@ class PetApi(object):
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
 
-        # HTTP header `Content-Type`
-        content_types_list = local_var_params.get('_content_type',
+        if content_types_list := local_var_params.get(
+            '_content_type',
             self.api_client.select_header_content_type(
-                ['multipart/form-data'],
-                'POST', body_params))  # noqa: E501
-        if content_types_list:
-                header_params['Content-Type'] = content_types_list
+                ['multipart/form-data'], 'POST', body_params
+            ),
+        ):
+            header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['petstore_auth']  # noqa: E501

@@ -73,7 +73,7 @@ class BodyApi(object):
         return self.test_binary_gif_with_http_info(**kwargs)  # noqa: E501
 
     @validate_arguments
-    def test_binary_gif_with_http_info(self, **kwargs):  # noqa: E501
+    def test_binary_gif_with_http_info(self, **kwargs):    # noqa: E501
         """Test binary (gif) response body  # noqa: E501
 
         Test binary (gif) response body  # noqa: E501
@@ -110,30 +110,22 @@ class BodyApi(object):
         _params = locals()
 
         _all_params = [
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         # validate the arguments
         for _key, _val in _params['kwargs'].items():
             if _key not in _all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method test_binary_gif" % _key
+                    f"Got an unexpected keyword argument '{_key}' to method test_binary_gif"
                 )
             _params[_key] = _val
         del _params['kwargs']
-
-        _collection_formats = {}
 
         # process the path parameters
         _path_params = {}
@@ -158,6 +150,7 @@ class BodyApi(object):
             '200': "bytearray",
         }
 
+        _collection_formats = {}
         return self.api_client.call_api(
             '/binary/gif', 'POST',
             _path_params,
@@ -207,7 +200,7 @@ class BodyApi(object):
         return self.test_echo_body_pet_with_http_info(pet, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def test_echo_body_pet_with_http_info(self, pet : Annotated[Optional[Pet], Field(description="Pet object that needs to be added to the store")] = None, **kwargs):  # noqa: E501
+    def test_echo_body_pet_with_http_info(self, pet : Annotated[Optional[Pet], Field(description="Pet object that needs to be added to the store")] = None, **kwargs):    # noqa: E501
         """Test body parameter(s)  # noqa: E501
 
         Test body parameter(s)  # noqa: E501
@@ -246,26 +239,20 @@ class BodyApi(object):
         _params = locals()
 
         _all_params = [
-            'pet'
+            'pet',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         # validate the arguments
         for _key, _val in _params['kwargs'].items():
             if _key not in _all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method test_echo_body_pet" % _key
+                    f"Got an unexpected keyword argument '{_key}' to method test_echo_body_pet"
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -282,21 +269,16 @@ class BodyApi(object):
         # process the form parameters
         _form_params = []
         _files = {}
-        # process the body parameter
-        _body_params = None
-        if _params['pet']:
-            _body_params = _params['pet']
-
+        _body_params = _params['pet'] if _params['pet'] else None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
 
-        # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
-        if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+        if _content_types_list := _params.get(
+            '_content_type',
+            self.api_client.select_header_content_type(['application/json']),
+        ):
+            _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
         _auth_settings = []  # noqa: E501
@@ -354,7 +336,7 @@ class BodyApi(object):
         return self.test_echo_body_pet_response_string_with_http_info(pet, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def test_echo_body_pet_response_string_with_http_info(self, pet : Annotated[Optional[Pet], Field(description="Pet object that needs to be added to the store")] = None, **kwargs):  # noqa: E501
+    def test_echo_body_pet_response_string_with_http_info(self, pet : Annotated[Optional[Pet], Field(description="Pet object that needs to be added to the store")] = None, **kwargs):    # noqa: E501
         """Test empty response body  # noqa: E501
 
         Test empty response body  # noqa: E501
@@ -393,26 +375,20 @@ class BodyApi(object):
         _params = locals()
 
         _all_params = [
-            'pet'
+            'pet',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         # validate the arguments
         for _key, _val in _params['kwargs'].items():
             if _key not in _all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method test_echo_body_pet_response_string" % _key
+                    f"Got an unexpected keyword argument '{_key}' to method test_echo_body_pet_response_string"
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -429,21 +405,16 @@ class BodyApi(object):
         # process the form parameters
         _form_params = []
         _files = {}
-        # process the body parameter
-        _body_params = None
-        if _params['pet']:
-            _body_params = _params['pet']
-
+        _body_params = _params['pet'] if _params['pet'] else None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
             ['text/plain'])  # noqa: E501
 
-        # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
-        if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+        if _content_types_list := _params.get(
+            '_content_type',
+            self.api_client.select_header_content_type(['application/json']),
+        ):
+            _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
         _auth_settings = []  # noqa: E501

@@ -75,9 +75,7 @@ class Pet(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in tags (list)
         _items = []
         if self.tags:
-            for _item in self.tags:
-                if _item:
-                    _items.append(_item.to_dict())
+            _items.extend(_item.to_dict() for _item in self.tags if _item)
             _dict['tags'] = _items
         return _dict
 
@@ -90,13 +88,18 @@ class Pet(BaseModel):
         if type(obj) is not dict:
             return Pet.parse_obj(obj)
 
-        _obj = Pet.parse_obj({
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "category": Category.from_dict(obj.get("category")) if obj.get("category") is not None else None,
-            "photo_urls": obj.get("photoUrls"),
-            "tags": [Tag.from_dict(_item) for _item in obj.get("tags")] if obj.get("tags") is not None else None,
-            "status": obj.get("status")
-        })
-        return _obj
+        return Pet.parse_obj(
+            {
+                "id": obj.get("id"),
+                "name": obj.get("name"),
+                "category": Category.from_dict(obj.get("category"))
+                if obj.get("category") is not None
+                else None,
+                "photo_urls": obj.get("photoUrls"),
+                "tags": [Tag.from_dict(_item) for _item in obj.get("tags")]
+                if obj.get("tags") is not None
+                else None,
+                "status": obj.get("status"),
+            }
+        )
 

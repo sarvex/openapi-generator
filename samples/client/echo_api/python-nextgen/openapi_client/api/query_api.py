@@ -77,7 +77,7 @@ class QueryApi(object):
         return self.test_enum_ref_string_with_http_info(enum_ref_string_query, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def test_enum_ref_string_with_http_info(self, enum_ref_string_query : Optional[StringEnumRef] = None, **kwargs):  # noqa: E501
+    def test_enum_ref_string_with_http_info(self, enum_ref_string_query : Optional[StringEnumRef] = None, **kwargs):    # noqa: E501
         """Test query parameter(s)  # noqa: E501
 
         Test query parameter(s)  # noqa: E501
@@ -116,31 +116,23 @@ class QueryApi(object):
         _params = locals()
 
         _all_params = [
-            'enum_ref_string_query'
+            'enum_ref_string_query',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         # validate the arguments
         for _key, _val in _params['kwargs'].items():
             if _key not in _all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method test_enum_ref_string" % _key
+                    f"Got an unexpected keyword argument '{_key}' to method test_enum_ref_string"
                 )
             _params[_key] = _val
         del _params['kwargs']
-
-        _collection_formats = {}
 
         # process the path parameters
         _path_params = {}
@@ -168,6 +160,7 @@ class QueryApi(object):
             '200': "str",
         }
 
+        _collection_formats = {}
         return self.api_client.call_api(
             '/query/enum_ref_string', 'GET',
             _path_params,
@@ -221,7 +214,7 @@ class QueryApi(object):
         return self.test_query_datetime_date_string_with_http_info(datetime_query, date_query, string_query, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def test_query_datetime_date_string_with_http_info(self, datetime_query : Optional[datetime] = None, date_query : Optional[date] = None, string_query : Optional[StrictStr] = None, **kwargs):  # noqa: E501
+    def test_query_datetime_date_string_with_http_info(self, datetime_query : Optional[datetime] = None, date_query : Optional[date] = None, string_query : Optional[StrictStr] = None, **kwargs):    # noqa: E501
         """Test query parameter(s)  # noqa: E501
 
         Test query parameter(s)  # noqa: E501
@@ -266,31 +259,23 @@ class QueryApi(object):
         _all_params = [
             'datetime_query',
             'date_query',
-            'string_query'
+            'string_query',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         # validate the arguments
         for _key, _val in _params['kwargs'].items():
             if _key not in _all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method test_query_datetime_date_string" % _key
+                    f"Got an unexpected keyword argument '{_key}' to method test_query_datetime_date_string"
                 )
             _params[_key] = _val
         del _params['kwargs']
-
-        _collection_formats = {}
 
         # process the path parameters
         _path_params = {}
@@ -330,6 +315,7 @@ class QueryApi(object):
             '200': "str",
         }
 
+        _collection_formats = {}
         return self.api_client.call_api(
             '/query/datetime/date/string', 'GET',
             _path_params,
@@ -383,7 +369,7 @@ class QueryApi(object):
         return self.test_query_integer_boolean_string_with_http_info(integer_query, boolean_query, string_query, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def test_query_integer_boolean_string_with_http_info(self, integer_query : Optional[StrictInt] = None, boolean_query : Optional[StrictBool] = None, string_query : Optional[StrictStr] = None, **kwargs):  # noqa: E501
+    def test_query_integer_boolean_string_with_http_info(self, integer_query : Optional[StrictInt] = None, boolean_query : Optional[StrictBool] = None, string_query : Optional[StrictStr] = None, **kwargs):    # noqa: E501
         """Test query parameter(s)  # noqa: E501
 
         Test query parameter(s)  # noqa: E501
@@ -428,31 +414,23 @@ class QueryApi(object):
         _all_params = [
             'integer_query',
             'boolean_query',
-            'string_query'
+            'string_query',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         # validate the arguments
         for _key, _val in _params['kwargs'].items():
             if _key not in _all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method test_query_integer_boolean_string" % _key
+                    f"Got an unexpected keyword argument '{_key}' to method test_query_integer_boolean_string"
                 )
             _params[_key] = _val
         del _params['kwargs']
-
-        _collection_formats = {}
 
         # process the path parameters
         _path_params = {}
@@ -486,6 +464,7 @@ class QueryApi(object):
             '200': "str",
         }
 
+        _collection_formats = {}
         return self.api_client.call_api(
             '/query/integer/boolean/string', 'GET',
             _path_params,
@@ -535,7 +514,7 @@ class QueryApi(object):
         return self.test_query_style_deep_object_explode_true_object_with_http_info(query_object, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def test_query_style_deep_object_explode_true_object_with_http_info(self, query_object : Optional[Dict[str, Dict[str, Any]]] = None, **kwargs):  # noqa: E501
+    def test_query_style_deep_object_explode_true_object_with_http_info(self, query_object : Optional[Dict[str, Dict[str, Any]]] = None, **kwargs):    # noqa: E501
         """Test query parameter(s)  # noqa: E501
 
         Test query parameter(s)  # noqa: E501
@@ -574,31 +553,23 @@ class QueryApi(object):
         _params = locals()
 
         _all_params = [
-            'query_object'
+            'query_object',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         # validate the arguments
         for _key, _val in _params['kwargs'].items():
             if _key not in _all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method test_query_style_deep_object_explode_true_object" % _key
+                    f"Got an unexpected keyword argument '{_key}' to method test_query_style_deep_object_explode_true_object"
                 )
             _params[_key] = _val
         del _params['kwargs']
-
-        _collection_formats = {}
 
         # process the path parameters
         _path_params = {}
@@ -626,6 +597,7 @@ class QueryApi(object):
             '200': "str",
         }
 
+        _collection_formats = {}
         return self.api_client.call_api(
             '/query/style_deepObject/explode_true/object', 'GET',
             _path_params,
@@ -675,7 +647,7 @@ class QueryApi(object):
         return self.test_query_style_deep_object_explode_true_object_all_of_with_http_info(query_object, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def test_query_style_deep_object_explode_true_object_all_of_with_http_info(self, query_object : Optional[Any] = None, **kwargs):  # noqa: E501
+    def test_query_style_deep_object_explode_true_object_all_of_with_http_info(self, query_object : Optional[Any] = None, **kwargs):    # noqa: E501
         """Test query parameter(s)  # noqa: E501
 
         Test query parameter(s)  # noqa: E501
@@ -714,31 +686,23 @@ class QueryApi(object):
         _params = locals()
 
         _all_params = [
-            'query_object'
+            'query_object',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         # validate the arguments
         for _key, _val in _params['kwargs'].items():
             if _key not in _all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method test_query_style_deep_object_explode_true_object_all_of" % _key
+                    f"Got an unexpected keyword argument '{_key}' to method test_query_style_deep_object_explode_true_object_all_of"
                 )
             _params[_key] = _val
         del _params['kwargs']
-
-        _collection_formats = {}
 
         # process the path parameters
         _path_params = {}
@@ -766,6 +730,7 @@ class QueryApi(object):
             '200': "str",
         }
 
+        _collection_formats = {}
         return self.api_client.call_api(
             '/query/style_deepObject/explode_true/object/allOf', 'GET',
             _path_params,
@@ -815,7 +780,7 @@ class QueryApi(object):
         return self.test_query_style_form_explode_true_array_string_with_http_info(query_object, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def test_query_style_form_explode_true_array_string_with_http_info(self, query_object : Optional[Dict[str, Any]] = None, **kwargs):  # noqa: E501
+    def test_query_style_form_explode_true_array_string_with_http_info(self, query_object : Optional[Dict[str, Any]] = None, **kwargs):    # noqa: E501
         """Test query parameter(s)  # noqa: E501
 
         Test query parameter(s)  # noqa: E501
@@ -854,31 +819,23 @@ class QueryApi(object):
         _params = locals()
 
         _all_params = [
-            'query_object'
+            'query_object',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         # validate the arguments
         for _key, _val in _params['kwargs'].items():
             if _key not in _all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method test_query_style_form_explode_true_array_string" % _key
+                    f"Got an unexpected keyword argument '{_key}' to method test_query_style_form_explode_true_array_string"
                 )
             _params[_key] = _val
         del _params['kwargs']
-
-        _collection_formats = {}
 
         # process the path parameters
         _path_params = {}
@@ -906,6 +863,7 @@ class QueryApi(object):
             '200': "str",
         }
 
+        _collection_formats = {}
         return self.api_client.call_api(
             '/query/style_form/explode_true/array_string', 'GET',
             _path_params,
@@ -955,7 +913,7 @@ class QueryApi(object):
         return self.test_query_style_form_explode_true_object_with_http_info(query_object, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def test_query_style_form_explode_true_object_with_http_info(self, query_object : Optional[Dict[str, Any]] = None, **kwargs):  # noqa: E501
+    def test_query_style_form_explode_true_object_with_http_info(self, query_object : Optional[Dict[str, Any]] = None, **kwargs):    # noqa: E501
         """Test query parameter(s)  # noqa: E501
 
         Test query parameter(s)  # noqa: E501
@@ -994,31 +952,23 @@ class QueryApi(object):
         _params = locals()
 
         _all_params = [
-            'query_object'
+            'query_object',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         # validate the arguments
         for _key, _val in _params['kwargs'].items():
             if _key not in _all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method test_query_style_form_explode_true_object" % _key
+                    f"Got an unexpected keyword argument '{_key}' to method test_query_style_form_explode_true_object"
                 )
             _params[_key] = _val
         del _params['kwargs']
-
-        _collection_formats = {}
 
         # process the path parameters
         _path_params = {}
@@ -1046,6 +996,7 @@ class QueryApi(object):
             '200': "str",
         }
 
+        _collection_formats = {}
         return self.api_client.call_api(
             '/query/style_form/explode_true/object', 'GET',
             _path_params,
@@ -1095,7 +1046,7 @@ class QueryApi(object):
         return self.test_query_style_form_explode_true_object_all_of_with_http_info(query_object, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def test_query_style_form_explode_true_object_all_of_with_http_info(self, query_object : Optional[Any] = None, **kwargs):  # noqa: E501
+    def test_query_style_form_explode_true_object_all_of_with_http_info(self, query_object : Optional[Any] = None, **kwargs):    # noqa: E501
         """Test query parameter(s)  # noqa: E501
 
         Test query parameter(s)  # noqa: E501
@@ -1134,31 +1085,23 @@ class QueryApi(object):
         _params = locals()
 
         _all_params = [
-            'query_object'
+            'query_object',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         # validate the arguments
         for _key, _val in _params['kwargs'].items():
             if _key not in _all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method test_query_style_form_explode_true_object_all_of" % _key
+                    f"Got an unexpected keyword argument '{_key}' to method test_query_style_form_explode_true_object_all_of"
                 )
             _params[_key] = _val
         del _params['kwargs']
-
-        _collection_formats = {}
 
         # process the path parameters
         _path_params = {}
@@ -1186,6 +1129,7 @@ class QueryApi(object):
             '200': "str",
         }
 
+        _collection_formats = {}
         return self.api_client.call_api(
             '/query/style_form/explode_true/object/allOf', 'GET',
             _path_params,

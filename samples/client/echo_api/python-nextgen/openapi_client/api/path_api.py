@@ -74,7 +74,7 @@ class PathApi(object):
         return self.tests_path_string_path_string_integer_path_integer_with_http_info(path_string, path_integer, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def tests_path_string_path_string_integer_path_integer_with_http_info(self, path_string : StrictStr, path_integer : StrictInt, **kwargs):  # noqa: E501
+    def tests_path_string_path_string_integer_path_integer_with_http_info(self, path_string : StrictStr, path_integer : StrictInt, **kwargs):    # noqa: E501
         """Test path parameter(s)  # noqa: E501
 
         Test path parameter(s)  # noqa: E501
@@ -116,31 +116,23 @@ class PathApi(object):
 
         _all_params = [
             'path_string',
-            'path_integer'
+            'path_integer',
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers',
         ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
         # validate the arguments
         for _key, _val in _params['kwargs'].items():
             if _key not in _all_params:
                 raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method tests_path_string_path_string_integer_path_integer" % _key
+                    f"Got an unexpected keyword argument '{_key}' to method tests_path_string_path_string_integer_path_integer"
                 )
             _params[_key] = _val
         del _params['kwargs']
-
-        _collection_formats = {}
 
         # process the path parameters
         _path_params = {}
@@ -171,6 +163,7 @@ class PathApi(object):
             '200': "str",
         }
 
+        _collection_formats = {}
         return self.api_client.call_api(
             '/path/string/{path_string}/integer/{path_integer}', 'GET',
             _path_params,

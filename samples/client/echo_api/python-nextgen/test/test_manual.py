@@ -90,7 +90,7 @@ class EchoServerResponseParser():
             raise ValueError("http response must not be None.")
 
         lines = http_response.split("\n")
-        self.headers = dict()
+        self.headers = {}
         x = 0
         while x < len(lines):
             if x == 0:
@@ -105,7 +105,7 @@ class EchoServerResponseParser():
                 # store the header key-value pair in headers
                 if len(key_value) == 2:
                     self.headers[key_value[0]] = key_value[1]
-            x = x+1
+            x += 1
             
 if __name__ == '__main__':
     unittest.main()

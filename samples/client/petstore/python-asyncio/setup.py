@@ -10,6 +10,7 @@
 """
 
 
+
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "petstore-api"
@@ -21,9 +22,12 @@ VERSION = "1.0.0"
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 
-REQUIRES = ["urllib3 >= 1.25.3", "six >= 1.10", "python-dateutil"]
-REQUIRES.append("aiohttp >= 3.0.0")
-
+REQUIRES = [
+    "urllib3 >= 1.25.3",
+    "six >= 1.10",
+    "python-dateutil",
+    "aiohttp >= 3.0.0",
+]
 setup(
     name=NAME,
     version=VERSION,

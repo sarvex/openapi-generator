@@ -52,11 +52,7 @@ class DataQuery(Query):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        return _dict
+        return self.dict(by_alias=True, exclude={}, exclude_none=True)
 
     @classmethod
     def from_dict(cls, obj: dict) -> DataQuery:
@@ -67,12 +63,13 @@ class DataQuery(Query):
         if type(obj) is not dict:
             return DataQuery.parse_obj(obj)
 
-        _obj = DataQuery.parse_obj({
-            "suffix": obj.get("suffix"),
-            "text": obj.get("text"),
-            "var_date": obj.get("date"),
-            "id": obj.get("id"),
-            "outcomes": obj.get("outcomes")
-        })
-        return _obj
+        return DataQuery.parse_obj(
+            {
+                "suffix": obj.get("suffix"),
+                "text": obj.get("text"),
+                "var_date": obj.get("date"),
+                "id": obj.get("id"),
+                "outcomes": obj.get("outcomes"),
+            }
+        )
 
